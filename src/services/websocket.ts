@@ -7,7 +7,11 @@ class WebSocketServer {
     lobby: Lobby;
 
     constructor(app: http.Server) {
-        this.ws = new io.Server(app, { cors: {} })
+        this.ws = new io.Server(app, {
+            cors: {
+                origin: "*"
+            }
+        })
         this.lobby = Lobby.getInstance();
 
         this.ws.on("connection", (socket: Socket) => {
